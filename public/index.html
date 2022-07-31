@@ -5,10 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="Snapshot of your upcoming weather" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -24,7 +21,19 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+
+    <!-- Google Maps Place autocomplete -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDS8gHsw7eOLigzQDXxB8BKoIGJSZKtsJ4&libraries=places"></script>
+
+    <!-- Google Oswald font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Skyshot | Snapshot of your upcoming weather</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
