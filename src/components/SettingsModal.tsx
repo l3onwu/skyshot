@@ -12,7 +12,9 @@ import {
   Box,
   Stack,
   Select,
+  Link,
 } from "@chakra-ui/react";
+import { AiFillGithub } from "react-icons/ai";
 import { allHours } from "../lib/helpers";
 import { useGlobalContext } from "../lib/context";
 
@@ -30,6 +32,24 @@ export default function SettingsModal({ isOpen, onClose }) {
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
+          {/* Meta */}
+          <Stack mb="25px">
+            <Text fontSize="14px" color="gray">
+              Use Skyshot to view the upcoming weather as a snapshot. Toggle
+              between rain and temperature views.
+            </Text>
+            <Link
+              color="gray"
+              fontSize="12px"
+              href="https://github.com/l3onwu/"
+              isExternal
+            >
+              <Stack direction="row" align="center">
+                <AiFillGithub color="gray" />
+                <Text color="gray">Developed by Leon Wu</Text>
+              </Stack>
+            </Link>
+          </Stack>
           {/* Timezone */}
           <Text fontSize="14px" mb="20px">
             Timezone:{" "}
@@ -37,7 +57,6 @@ export default function SettingsModal({ isOpen, onClose }) {
               Australian Eastern Standard Time
             </span>
           </Text>
-
           {/* C/F */}
           <Box mb="20px">
             <Text fontSize="14px">Celsius | Fahrenheit</Text>
@@ -55,7 +74,6 @@ export default function SettingsModal({ isOpen, onClose }) {
               }}
             />
           </Box>
-
           {/* 12/24 */}
           <Box mb="20px">
             <Text fontSize="14px">12 | 24 hour</Text>
@@ -73,7 +91,6 @@ export default function SettingsModal({ isOpen, onClose }) {
               }}
             />
           </Box>
-
           <Stack direction="row">
             {/* StartHour */}
             <Stack
