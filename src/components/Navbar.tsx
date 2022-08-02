@@ -24,15 +24,14 @@ export default function Navbar() {
     <Box borderBottomWidth="1px" borderColor="gray.700" mb="20px" height="60px">
       <Container maxW="container.xl" height="100%">
         {/* Left side */}
-        <Flex
-          align="center"
-          height="100%"
-          justify="space-between"
-          overflow="scroll"
-        >
+        <Flex align="center" height="100%" justify="space-between">
           <Stack direction="row" align="center" spacing="23px">
             {/* Hero */}
-            <Heading color="white" fontFamily="Oswald" fontSize="30px">
+            <Heading
+              color="white"
+              fontFamily="Oswald"
+              fontSize={["18px", "30px"]}
+            >
               SKYSHOT
             </Heading>
             {/* Current */}
@@ -91,7 +90,7 @@ export default function Navbar() {
               />
             </Stack>
             {/* Place */}
-            <Box position="static">
+            <Box position="static" display={["none", "block"]}>
               <PlacesAutocomplete />
             </Box>
           </Flex>

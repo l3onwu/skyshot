@@ -17,6 +17,7 @@ import {
 import { AiFillGithub } from "react-icons/ai";
 import { allHours } from "../lib/helpers";
 import { useGlobalContext } from "../lib/context";
+import PlacesAutocomplete from "./PlacesAutocomplete";
 
 export default function SettingsModal({ isOpen, onClose }) {
   // State
@@ -50,6 +51,13 @@ export default function SettingsModal({ isOpen, onClose }) {
               </Stack>
             </Link>
           </Stack>
+          {/* Location select, display on small devices */}
+          <Box position="static" display={["block", "none"]} mb="20px">
+            <Text fontSize="14px" mb="7px">
+              Location:
+            </Text>
+            <PlacesAutocomplete />
+          </Box>
           {/* Timezone */}
           <Text fontSize="14px" mb="20px">
             Timezone:{" "}
