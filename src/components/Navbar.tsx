@@ -24,7 +24,12 @@ export default function Navbar() {
     <Box borderBottomWidth="1px" borderColor="gray.700" mb="20px" height="60px">
       <Container maxW="container.xl" height="100%">
         {/* Left side */}
-        <Flex align="center" height="100%" justify="space-between">
+        <Flex
+          align="center"
+          height="100%"
+          justify="space-between"
+          overflow="scroll"
+        >
           <Stack direction="row" align="center" spacing="23px">
             {/* Hero */}
             <Heading color="white" fontFamily="Oswald" fontSize="30px">
