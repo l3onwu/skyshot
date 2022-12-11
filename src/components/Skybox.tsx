@@ -35,7 +35,18 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
             borderColor: "white",
             cursor: "pointer",
           }}
-        ></Box>
+        >
+          {interfaceHook?.mode === "Numbers" && (
+            <Text
+              fontSize="10px"
+              color="gray.100"
+              fontWeight="bold"
+              align="center"
+            >
+              {`${hourData["temperature"]}°C`}
+            </Text>
+          )}
+        </Box>
       </PopoverTrigger>
 
       {/* Popover Content */}

@@ -7,7 +7,7 @@ import {
   IconButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import { BsCloudRain, BsThermometerHalf } from "react-icons/bs";
+import { BsCloudRain, BsThermometerHalf, BsCalculator } from "react-icons/bs";
 import { AiOutlineSetting } from "react-icons/ai";
 import PlacesAutocomplete from "./PlacesAutocomplete";
 import CurrentWeather from "./CurrentWeather";
@@ -86,6 +86,20 @@ export default function Navbar() {
                 }}
                 onClick={() => {
                   interfaceHook?.setMode("Temp");
+                }}
+              />
+              {/* Numbers */}
+              <IconButton
+                aria-label="Numbers"
+                icon={<BsCalculator />}
+                size="md"
+                variant="link"
+                color={interfaceHook?.mode === "Numbers" ? "white" : "gray.600"}
+                _hover={{
+                  color: "white",
+                }}
+                onClick={() => {
+                  interfaceHook?.setMode("Numbers");
                 }}
               />
             </Stack>
