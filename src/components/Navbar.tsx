@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { BsCloudRain, BsThermometerHalf, BsCalculator } from "react-icons/bs";
 import { AiOutlineSetting } from "react-icons/ai";
+import { BiCurrentLocation } from "react-icons/bi";
 import PlacesAutocomplete from "./PlacesAutocomplete";
 import CurrentWeather from "./CurrentWeather";
 import SettingsModal from "./SettingsModal";
@@ -18,7 +19,7 @@ import { useGlobalContext } from "../lib/context";
 export default function Navbar() {
   // Helpers
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { interfaceHook } = useGlobalContext();
+  const { interfaceHook, geoHook } = useGlobalContext();
 
   // TSX
   return (
@@ -108,9 +109,26 @@ export default function Navbar() {
               />
             </Stack>
             {/* Place */}
-            <Box position="static" display={["none", "block"]}>
+            <Stack
+              direction="row"
+              position="static"
+              display={["none", "none", "flex"]}
+            >
               <PlacesAutocomplete />
-            </Box>
+              <IconButton
+                aria-label="Get location"
+                icon={<BiCurrentLocation />}
+                size="md"
+                variant="link"
+                color="gray.600"
+                _hover={{
+                  color: "white",
+                }}
+                onClick={() => {
+                  geoHook.getBrowserLocation();
+                }}
+              />
+            </Stack>
           </Flex>
         </Flex>
       </Container>

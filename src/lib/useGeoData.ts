@@ -8,27 +8,32 @@ export default function useGeoData() {
   );
   const [firstLoad, setFirstLoad] = useState<boolean>(true);
 
+  // Get geolocation from browser. Updates 'firstload' to tell navbar to reload
+  const getBrowserLocation = () => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const latLngLiteral = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      getGeocode({ location: latLngLiteral }).then((response) => {
+        const newGeoObject: GeoType = {
+          ...latLngLiteral,
+          address: response[0]["formatted_address"],
+        };
+        localStorage.setItem("geoObject", JSON.stringify(newGeoObject));
+        setGeoObject(newGeoObject);
+        setFirstLoad(!firstLoad);
+      });
+    });
+  };
+
   // On app load, check if location data is saved in localstorage
   // If not, ask for user's geo data and save to localStorage
   useEffect(() => {
     if (!JSON.parse(localStorage.getItem("geoObject"))) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const latLngLiteral = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-        getGeocode({ location: latLngLiteral }).then((response) => {
-          const newGeoObject: GeoType = {
-            ...latLngLiteral,
-            address: response[0]["formatted_address"],
-          };
-          localStorage.setItem("geoObject", JSON.stringify(newGeoObject));
-          setGeoObject(newGeoObject);
-          setFirstLoad(false);
-        });
-      });
+      getBrowserLocation();
     }
   }, []);
 
-  return { firstLoad, geoObject, setGeoObject };
+  return { firstLoad, geoObject, setGeoObject, getBrowserLocation };
 }
