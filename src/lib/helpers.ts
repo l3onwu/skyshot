@@ -66,14 +66,20 @@ export const chooseBG = (datapoint, mode) => {
   }
   // Temperature mode
   else {
-    if (datapoint["temperature"] < 8) {
+    if (datapoint["temperature"] < -4) {
+      return "#48486b";
+    } else if (datapoint["temperature"] < 4) {
       return "blue";
     } else if (datapoint["temperature"] < 12) {
       return "#6100ff";
     } else if (datapoint["temperature"] < 20) {
       return "#c300ff";
-    } else {
+    } else if (datapoint["temperature"] < 30) {
+      return "#ed5a00";
+    } else if (datapoint["temperature"] < 40) {
       return "red";
+    } else {
+      return "#7a0c0c";
     }
   }
 };
