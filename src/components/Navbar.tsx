@@ -4,6 +4,7 @@ import {
   Flex,
   Stack,
   Heading,
+  Text,
   IconButton,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -88,18 +89,21 @@ export default function Navbar() {
                   interfaceHook?.setMode("Temp");
                 }}
               />
+              <Text color="gray.700" px="15px">
+                |
+              </Text>
               {/* Numbers */}
               <IconButton
                 aria-label="Numbers"
                 icon={<BsCalculator />}
                 size="md"
                 variant="link"
-                color={interfaceHook?.mode === "Numbers" ? "white" : "gray.600"}
+                color={interfaceHook?.numberMode ? "facebook.400" : "gray.600"}
                 _hover={{
                   color: "white",
                 }}
                 onClick={() => {
-                  interfaceHook?.setMode("Numbers");
+                  interfaceHook?.setNumberMode(!interfaceHook?.numberMode);
                 }}
               />
             </Stack>

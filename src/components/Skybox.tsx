@@ -36,7 +36,7 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
             cursor: "pointer",
           }}
         >
-          {interfaceHook?.mode === "Numbers" && (
+          {interfaceHook?.numberMode && (
             <Text
               fontSize="10px"
               color="gray.100"
