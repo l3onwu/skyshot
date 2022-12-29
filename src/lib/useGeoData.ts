@@ -7,6 +7,9 @@ export default function useGeoData() {
     JSON.parse(localStorage.getItem("geoObject")) || {}
   );
   const [firstLoad, setFirstLoad] = useState<boolean>(true);
+  const [timezone, setTimezone] = useState(
+    JSON.parse(localStorage.getItem("timezone")) || null
+  );
 
   // Get geolocation from browser. Updates 'firstload' to tell navbar to reload
   const getBrowserLocation = () => {
@@ -35,5 +38,12 @@ export default function useGeoData() {
     }
   }, []);
 
-  return { firstLoad, geoObject, setGeoObject, getBrowserLocation };
+  return {
+    firstLoad,
+    geoObject,
+    setGeoObject,
+    getBrowserLocation,
+    timezone,
+    setTimezone,
+  };
 }

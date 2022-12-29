@@ -11,6 +11,7 @@ export const GlobalContextProvider = ({ children }) => {
   const geoHook = useGeoData();
   const weatherHook = useWeatherData({
     geoObject: geoHook?.geoObject,
+    timezone: geoHook?.timezone,
     startHour: interfaceHook?.startHour,
     endHour: interfaceHook?.endHour,
   });

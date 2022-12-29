@@ -17,18 +17,29 @@ function App() {
       {/* Page contents */}
       <Container maxW="container.xl" minH="calc(100vh - 100px)">
         {/* Fetching error, location set */}
-        {weatherHook?.weatherError && geoHook?.geoObject?.lat && (
-          <Heading fontFamily="Oswald" color="gray.500" fontWeight="regular">
-            Trouble loading data. Try refreshing the page...
-          </Heading>
-        )}
+        {weatherHook?.weatherError &&
+          geoHook?.geoObject?.lat &&
+          geoHook?.timezone && (
+            <Heading fontFamily="Oswald" color="gray.500" fontWeight="regular">
+              Trouble loading data. Try refreshing the page...
+            </Heading>
+          )}
 
         {/* Fetching error, no location set */}
         {weatherHook?.weatherError &&
           !geoHook?.geoObject?.lat &&
           !weatherHook?.parsedWeatherArray[0][0] && (
             <Heading fontFamily="Oswald" color="gray.500" fontWeight="regular">
-              Enter a location to view the weather
+              Enter a location to view the weather...
+            </Heading>
+          )}
+
+        {/* Fetching error, no timezone set */}
+        {weatherHook?.weatherError &&
+          geoHook?.geoObject?.lat &&
+          !geoHook?.timezone && (
+            <Heading fontFamily="Oswald" color="gray.500" fontWeight="regular">
+              Enter a timezone to view the weather...
             </Heading>
           )}
 

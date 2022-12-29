@@ -15,6 +15,7 @@ import PlacesAutocomplete from "./PlacesAutocomplete";
 import CurrentWeather from "./CurrentWeather";
 import SettingsModal from "./SettingsModal";
 import { useGlobalContext } from "../lib/context";
+import timezones from "../lib/timezones";
 
 export default function Navbar() {
   // Helpers
@@ -27,17 +28,30 @@ export default function Navbar() {
       <Container maxW="container.xl" height="100%">
         {/* Left side */}
         <Flex align="center" height="100%" justify="space-between">
-          <Stack direction="row" align="center" spacing="23px">
+          <Stack direction="row" align="center" spacing="15px">
             {/* Hero */}
             <Heading
               color="white"
               fontFamily="Oswald"
               fontSize={["18px", "30px"]}
+              pr="20px"
             >
               SKYSHOT
             </Heading>
+
             {/* Current */}
             <CurrentWeather />
+
+            {/* Timezone */}
+            <Stack spacing="0px">
+              <Text fontSize="11px" color="gray.300">
+                Updated: {new Date().toLocaleTimeString()}
+              </Text>
+              <Text fontSize="9px" color="gray.600">
+                Timezone: {timezones[geoHook?.timezone]?.display}
+              </Text>
+            </Stack>
+
             {/* Settings */}
             <IconButton
               icon={<AiOutlineSetting />}
@@ -45,9 +59,12 @@ export default function Navbar() {
               size="md"
               bgColor="transparent"
               color="gray.500"
-              variant="unstyled"
+              variant="ghost"
               _hover={{
                 color: "white",
+              }}
+              _focus={{
+                backgroundColor: "transparent",
               }}
               onClick={onOpen}
             />

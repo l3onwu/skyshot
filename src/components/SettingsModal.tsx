@@ -18,10 +18,11 @@ import { AiFillGithub } from "react-icons/ai";
 import { allHours } from "../lib/helpers";
 import { useGlobalContext } from "../lib/context";
 import PlacesAutocomplete from "./PlacesAutocomplete";
+import timezones from "../lib/timezones";
 
 export default function SettingsModal({ isOpen, onClose }) {
   // State
-  const { interfaceHook } = useGlobalContext();
+  const { interfaceHook, geoHook } = useGlobalContext();
 
   // TSX
   return (
@@ -59,12 +60,32 @@ export default function SettingsModal({ isOpen, onClose }) {
             <PlacesAutocomplete />
           </Box>
           {/* Timezone */}
-          <Text fontSize="14px" mb="20px">
-            Timezone:{" "}
-            <span style={{ color: "gray" }}>
-              Australian Eastern Standard Time
-            </span>
-          </Text>
+          <Box mb="20px">
+            <Text fontSize="14px" mb="5px">
+              Timezone
+            </Text>
+            <Select
+              placeholder="Select timezone"
+              size="xs"
+              color="gray"
+              borderColor="gray"
+              variant="flushed"
+              defaultValue={geoHook?.timezone}
+              onChange={(event) => {
+                const timezoneIndex = event.target.value;
+                geoHook?.setTimezone(timezoneIndex);
+                localStorage.setItem("timezone", timezoneIndex);
+              }}
+            >
+              {timezones?.map((zone, index) => {
+                return (
+                  <option value={index} key={index}>
+                    {zone?.display}
+                  </option>
+                );
+              })}
+            </Select>
+          </Box>
           {/* C/F */}
           <Box mb="20px">
             <Text fontSize="14px">Celsius | Fahrenheit</Text>

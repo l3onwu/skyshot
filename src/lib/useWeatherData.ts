@@ -1,17 +1,25 @@
 import axios from "axios";
+import { useEffect } from "react";
 import useSWR from "swr";
 import { WeatherType } from "./types";
+import timezones from "./timezones";
 
-export default function useWeatherData({ geoObject, startHour, endHour }) {
+export default function useWeatherData({
+  geoObject,
+  timezone,
+  startHour,
+  endHour,
+}) {
   // Retrieve weather data, manage with SWR
   const openMeteoFetcher = async () => {
+    const timezoneQuery = `&timezone=${timezones[timezone]?.query}`;
     const response = await axios.get(
-      `https://api.open-meteo.com/v1/forecast?latitude=${geoObject["lat"]}&longitude=${geoObject["lng"]}&hourly=temperature_2m,precipitation&timezone=Australia%2FSydney`
+      `https://api.open-meteo.com/v1/forecast?latitude=${geoObject["lat"]}&longitude=${geoObject["lng"]}&hourly=temperature_2m,precipitation${timezoneQuery}`
     );
     return response?.data;
   };
   const { data: weatherData, error: weatherError } = useSWR(
-    () => "/weatherData" + geoObject["lat"],
+    () => "/weatherData" + geoObject["lat"] + timezone,
     openMeteoFetcher,
     {
       revalidateOnMount: true,
