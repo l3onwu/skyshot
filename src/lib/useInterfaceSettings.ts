@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 export default function useInterfaceSettings() {
-  const [mode, setMode] = useState("Rain");
-  const [numberMode, setNumberMode] = useState(false);
+  const [mode, setMode] = useState("Temp");
+  const [numberMode, setNumberMode] = useState(true);
   const [tempUnit, setTempUnit] = useState(
     localStorage.getItem("tempUnit") || "C"
   );

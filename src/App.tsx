@@ -39,7 +39,7 @@ function App() {
           geoHook?.geoObject?.lat &&
           !geoHook?.timezone && (
             <Heading fontFamily="Oswald" color="gray.500" fontWeight="regular">
-              Enter a timezone to view the weather...
+              Enter a timezone in settings to view the weather...
             </Heading>
           )}
 

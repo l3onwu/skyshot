@@ -79,20 +79,6 @@ export default function Navbar() {
               spacing="-10px"
               mr={["1px", "1px", "10px"]}
             >
-              {/* Rain */}
-              <IconButton
-                aria-label="Rainfall"
-                icon={<BsCloudRain />}
-                size="md"
-                variant="link"
-                color={interfaceHook?.mode === "Rain" ? "white" : "gray.600"}
-                _hover={{
-                  color: "white",
-                }}
-                onClick={() => {
-                  interfaceHook?.setMode("Rain");
-                }}
-              />
               {/* Temperature */}
               <IconButton
                 aria-label="Temperature"
@@ -107,9 +93,26 @@ export default function Navbar() {
                   interfaceHook?.setMode("Temp");
                 }}
               />
+
+              {/* Rain */}
+              <IconButton
+                aria-label="Rainfall"
+                icon={<BsCloudRain />}
+                size="md"
+                variant="link"
+                color={interfaceHook?.mode === "Rain" ? "white" : "gray.600"}
+                _hover={{
+                  color: "white",
+                }}
+                onClick={() => {
+                  interfaceHook?.setMode("Rain");
+                }}
+              />
+
               <Text color="gray.700" px="15px">
                 |
               </Text>
+
               {/* Numbers */}
               <IconButton
                 aria-label="Numbers"
