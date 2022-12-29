@@ -51,9 +51,10 @@ export default function CurrentWeather() {
                 ? `${weatherHook?.currentWeatherObject?.temperature}°C`
                 : weatherHook?.currentWeatherObject?.temperature &&
                   interfaceHook?.tempUnit === "F"
-                ? `${
-                    weatherHook?.currentWeatherObject?.temperature * 1.5 + 32
-                  }°F`
+                ? `${(
+                    weatherHook?.currentWeatherObject?.temperature * 1.5 +
+                    32
+                  ).toFixed(1)}°F`
                 : ""}
             </Text>
           </Stack>

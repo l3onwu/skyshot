@@ -43,7 +43,9 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
               fontWeight="bold"
               align="center"
             >
-              {`${hourData["temperature"]}°C`}
+              {interfaceHook?.tempUnit === "C"
+                ? `${hourData["temperature"]}°C`
+                : `${(hourData["temperature"] * 1.5 + 32).toFixed(1)}°F`}
             </Text>
           )}
         </Box>
@@ -73,7 +75,7 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
               <Text>
                 {interfaceHook?.tempUnit === "C"
                   ? `${hourData["temperature"]}°C`
-                  : `${hourData["temperature"] * 1.5 + 32}°F`}
+                  : `${(hourData["temperature"] * 1.5 + 32).toFixed(1)}°F`}
               </Text>
             </Stack>
 
