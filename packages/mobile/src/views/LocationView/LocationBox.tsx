@@ -42,7 +42,7 @@ const LocationBox = ({ locationObject, locationIndex }) => {
             <Text fontWeight="700">{locationObject.address}</Text>
 
             {/* Time */}
-            <Text fontSize="18" color="gray.400">
+            <Text fontSize={18} color="gray.400">
               {localTime}
             </Text>
             {/* Delete button */}
@@ -61,7 +61,7 @@ const LocationBox = ({ locationObject, locationIndex }) => {
         </Flex>
 
         {/* Temperature/conditions */}
-        <Text fontSize="36">
+        <Text fontSize={36}>
           {weatherHook?.allParsedWeather[locationIndex]?.current?.temperature}{" "}
           °C
         </Text>

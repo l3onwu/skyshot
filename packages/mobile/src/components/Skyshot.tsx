@@ -10,7 +10,7 @@ const Skyshot = () => {
 
   return (
     <ScrollView bgColor="rgba(164, 164, 164, 0.2)" p="4" borderRadius="20">
-      <Text fontSize="24" fontWeight="800">
+      <Text fontSize={24} fontWeight="800">
         7 Day Temperature
       </Text>
       {/* TODO: Hour numbers */}
@@ -55,7 +55,7 @@ const Skyshot = () => {
                             : 0
                         }
                       >
-                        <Text fontSize="10" fontWeight="600" color="gray.100">
+                        <Text fontSize={10} fontWeight="600" color="gray.100">
                           {hourData.temperature}
                         </Text>
                       </Center>
