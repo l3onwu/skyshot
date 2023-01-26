@@ -6,6 +6,7 @@ import { useGlobalContext } from "../lib/context";
 export default function CurrentWeather() {
   // State
   const { weatherHook, interfaceHook } = useGlobalContext();
+  const currentWeatherObject = weatherHook?.allParsedWeather[0]?.current;
 
   // TSX
   return (
@@ -26,35 +27,32 @@ export default function CurrentWeather() {
         startColor="gray.900"
         endColor="gray.600"
         fadeDuration={2}
-        isLoaded={!weatherHook?.weatherLoading}
+        isLoaded={!weatherHook?.weatherLoading && !weatherHook?.weatherParsing}
         borderRadius="10px"
       >
         <Stack spacing="-2px" direction="column" width="60px" height="50px">
           <Stack direction="row" align="center">
             <Text
               color={
-                weatherHook?.currentWeatherObject?.precipitation > 0
-                  ? "blue"
-                  : "orange"
+                currentWeatherObject?.precipitation > 0 ? "blue" : "orange"
               }
               fontSize="12px"
             >
-              {weatherHook?.currentWeatherObject?.precipitation > 0 ? (
+              {currentWeatherObject?.precipitation > 0 ? (
                 <BsCloudRain />
               ) : (
                 <BsFillSunFill />
               )}
             </Text>
             <Text fontSize="12px">
-              {weatherHook?.currentWeatherObject?.temperature &&
+              {currentWeatherObject?.temperature &&
               interfaceHook?.tempUnit === "C"
-                ? `${weatherHook?.currentWeatherObject?.temperature}°C`
-                : weatherHook?.currentWeatherObject?.temperature &&
+                ? `${currentWeatherObject?.temperature}°C`
+                : currentWeatherObject?.temperature &&
                   interfaceHook?.tempUnit === "F"
-                ? `${(
-                    weatherHook?.currentWeatherObject?.temperature * 1.5 +
-                    32
-                  ).toFixed(1)}°F`
+                ? `${(currentWeatherObject?.temperature * 1.5 + 32).toFixed(
+                    1
+                  )}°F`
                 : ""}
             </Text>
           </Stack>
@@ -64,15 +62,13 @@ export default function CurrentWeather() {
             <Text
               fontSize="12px"
               color={
-                weatherHook?.currentWeatherObject?.precipitation > 0
-                  ? "blue"
-                  : "gray.400"
+                currentWeatherObject?.precipitation > 0 ? "blue" : "gray.400"
               }
             >
               <IoIosWater />
             </Text>
             <Text fontSize="12px">
-              {weatherHook?.currentWeatherObject?.precipitation}{" "}
+              {currentWeatherObject?.precipitation}{" "}
               <span style={{ fontSize: "9px" }}> mm</span>
             </Text>
           </Stack>

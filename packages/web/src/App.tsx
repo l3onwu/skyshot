@@ -34,15 +34,6 @@ function App() {
             </Heading>
           )}
 
-        {/* Fetching error, no timezone set */}
-        {weatherHook?.weatherError &&
-          geoHook?.geoObject?.lat &&
-          !geoHook?.timezone && (
-            <Heading fontFamily="Oswald" color="gray.500" fontWeight="regular">
-              Enter a timezone in settings to view the weather...
-            </Heading>
-          )}
-
         {/* Loading and success. Weather view*/}
         {!weatherHook?.weatherError && <Skyshot />}
       </Container>

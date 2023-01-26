@@ -59,33 +59,7 @@ export default function SettingsModal({ isOpen, onClose }) {
             </Text>
             <PlacesAutocomplete />
           </Box>
-          {/* Timezone */}
-          <Box mb="20px">
-            <Text fontSize="14px" mb="5px">
-              Timezone
-            </Text>
-            <Select
-              placeholder="Select timezone"
-              size="xs"
-              color="gray"
-              borderColor="gray"
-              variant="flushed"
-              defaultValue={geoHook?.timezone}
-              onChange={(event) => {
-                const timezoneIndex = event.target.value;
-                geoHook?.setTimezone(timezoneIndex);
-                localStorage.setItem("timezone", timezoneIndex);
-              }}
-            >
-              {timezones?.map((zone, index) => {
-                return (
-                  <option value={index} key={index}>
-                    {zone?.display}
-                  </option>
-                );
-              })}
-            </Select>
-          </Box>
+
           {/* C/F */}
           <Box mb="20px">
             <Text fontSize="14px">Celsius | Fahrenheit</Text>

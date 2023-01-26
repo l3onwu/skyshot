@@ -9,7 +9,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { BsCloudRain, BsFillSunFill } from "react-icons/bs";
-import { checkNow, chooseBG } from "../lib/helpers";
+import { checkNow, chooseBG } from "common/lib/helpers";
 import { WeatherType } from "../lib/types";
 import { useGlobalContext } from "../lib/context";
 

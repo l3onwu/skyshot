@@ -18,7 +18,7 @@ export default function Skyshot() {
       height="calc(100vh - 130px)"
     >
       {/* Hour numbers */}
-      {!weatherHook?.weatherLoading && (
+      {!weatherHook?.weatherLoading && !weatherHook?.weatherParsing && (
         <Stack
           direction="column"
           spacing="5px"
@@ -49,7 +49,7 @@ export default function Skyshot() {
         width="100%"
         minH="500px"
       >
-        {weatherHook?.parsedWeatherArray.map(
+        {weatherHook?.allParsedWeather[0]?.weather?.map(
           (dayArray: WeatherType[], dayIndex) => {
             return (
               <Skeleton
@@ -57,7 +57,9 @@ export default function Skyshot() {
                 startColor="gray.900"
                 endColor="gray.600"
                 fadeDuration={2}
-                isLoaded={!weatherHook?.weatherLoading}
+                isLoaded={
+                  !weatherHook?.weatherLoading && !weatherHook?.weatherParsing
+                }
                 height="100%"
                 borderRadius="10px"
               >

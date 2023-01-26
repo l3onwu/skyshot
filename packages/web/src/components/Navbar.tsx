@@ -45,11 +45,11 @@ export default function Navbar() {
             {/* Timezone */}
             <Stack spacing="0px">
               <Text fontSize="11px" color="gray.300">
-                Updated: {new Date().toLocaleTimeString()}
+                Your time: {new Date().toLocaleTimeString()}
               </Text>
-              <Text fontSize="9px" color="gray.600">
+              {/* <Text fontSize="9px" color="gray.600">
                 Timezone: {timezones[geoHook?.timezone]?.display}
-              </Text>
+              </Text> */}
             </Stack>
 
             {/* Settings */}
