@@ -12,10 +12,6 @@ export const checkNow = (givenDate: Date) => {
 // Takes a day's index, and returns the English day name
 export const dayToDay = (dayIndex: number) => {
   const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const today = new Date();
-  if (dayIndex === today.getDay()) {
-    return "Today";
-  }
   return DAYS[dayIndex % 7];
 };
 

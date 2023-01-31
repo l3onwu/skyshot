@@ -6,6 +6,8 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import { Box, Text, Stack, Input } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useGlobalContext } from "../lib/context";
+import axios from "axios";
+import { GeoType } from "common/lib/types";
 
 export default function PlacesAutocomplete() {
   // Helpers
@@ -36,14 +38,30 @@ export default function PlacesAutocomplete() {
       setValue(description, false);
       clearSuggestions();
 
-      getGeocode({ address: description }).then((results) => {
+      getGeocode({ address: description }).then(async (results) => {
         const { lat, lng } = getLatLng(results[0]);
+        // After getting lat/lng, call Google Timezones API for location timezone data
+        let axiosRequestConfig = {
+          method: "get",
+          url: `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${
+            new Date().getTime() / 1000
+          }&key=${process.env.REACT_APP_GOOGLE_WEB_APIKEY}`,
+          headers: {},
+        };
+        let timezoneResp = null;
+        try {
+          const resp = await axios(axiosRequestConfig);
+          timezoneResp = resp.data;
+        } catch (error) {
+          console.error("Problem adding location");
+        }
 
-        // Serialize and save coords + city to localStorage
-        const newGeoObject = {
+        // Serialize and save coords + city + timezone to localStorage
+        const newGeoObject: GeoType = {
           address: description,
-          lat: lat.toString(),
-          lng: lng.toString(),
+          lat: lat,
+          lng: lng,
+          timezoneID: timezoneResp?.timeZoneId,
         };
         localStorage.setItem("geoObject", JSON.stringify(newGeoObject));
 

@@ -1,12 +1,13 @@
 import { Stack, Text, SimpleGrid, Skeleton, Flex } from "@chakra-ui/react";
-import { dayToDay, parseStart } from "../lib/helpers";
+import { dayToDay, parseStart } from "common/lib/helpers";
 import Skybox from "./Skybox";
-import { WeatherType } from "../lib/types";
+import { WeatherType } from "common/lib/types";
 import { useGlobalContext } from "../lib/context";
+import { utcToZonedTime, format } from "date-fns-tz";
 
 export default function Skyshot() {
   // State
-  const { weatherHook, interfaceHook } = useGlobalContext();
+  const { weatherHook, interfaceHook, geoHook } = useGlobalContext();
 
   // TSX
   return (
@@ -51,6 +52,16 @@ export default function Skyshot() {
       >
         {weatherHook?.allParsedWeather[0]?.weather?.map(
           (dayArray: WeatherType[], dayIndex) => {
+            // Parse first time data of day into locale day index
+            let firstDataDayIndex = 0;
+            if (dayArray[0]?.time) {
+              const zonedDate = utcToZonedTime(
+                dayArray[0]?.time,
+                geoHook?.geoObject?.timezoneID
+              );
+              const output = format(zonedDate, "e");
+              firstDataDayIndex = +output - 1;
+            }
             return (
               <Skeleton
                 key={`day${dayIndex}`}
@@ -82,7 +93,7 @@ export default function Skyshot() {
                     fontSize="11px"
                     fontFamily="Oswald"
                   >
-                    {dayToDay(new Date().getDay() + dayIndex)}
+                    {dayToDay(firstDataDayIndex)}
                   </Text>
 
                   {/* Skybox */}
