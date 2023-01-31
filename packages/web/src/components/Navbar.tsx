@@ -15,7 +15,6 @@ import PlacesAutocomplete from "./PlacesAutocomplete";
 import CurrentWeather from "./CurrentWeather";
 import SettingsModal from "./SettingsModal";
 import { useGlobalContext } from "../lib/context";
-import timezones from "../lib/timezones";
 
 export default function Navbar() {
   // Helpers
