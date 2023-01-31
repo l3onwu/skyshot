@@ -15,14 +15,13 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { AiFillGithub } from "react-icons/ai";
-import { allHours } from "../lib/helpers";
+import { allHours } from "common/lib/helpers";
 import { useGlobalContext } from "../lib/context";
 import PlacesAutocomplete from "./PlacesAutocomplete";
-import timezones from "../lib/timezones";
 
 export default function SettingsModal({ isOpen, onClose }) {
   // State
-  const { interfaceHook, geoHook } = useGlobalContext();
+  const { interfaceHook } = useGlobalContext();
 
   // TSX
   return (
