@@ -1,13 +1,30 @@
+import { useState, useEffect } from "react";
 import { Stack, Text, SimpleGrid, Skeleton, Flex } from "@chakra-ui/react";
 import { dayToDay, parseStart } from "common/lib/helpers";
 import Skybox from "./Skybox";
 import { WeatherType } from "common/lib/types";
 import { useGlobalContext } from "../lib/context";
 import { utcToZonedTime, format } from "date-fns-tz";
+import sevenDaysTempPrecip from "common/lib/weatherParsers/sevenDayTempPrecip";
 
 export default function Skyshot() {
   // State
   const { weatherHook, interfaceHook, geoHook } = useGlobalContext();
+
+  // Set a default state with data structure, to load skeletons
+  const [parsedWeather, setParsedWeather] = useState({
+    weather: [[], [], [], [], [], [], []],
+  });
+  const [weatherParsing, setWeatherParsing] = useState(true);
+
+  useEffect(() => {
+    setWeatherParsing(true);
+    if (weatherHook?.weatherData?.[0]) {
+      let tempParsedWeather = sevenDaysTempPrecip(weatherHook?.weatherData?.[0]);
+      setParsedWeather(tempParsedWeather);
+      setWeatherParsing(false);
+    }
+  }, [weatherHook?.weatherData]);
 
   // TSX
   return (
@@ -19,7 +36,7 @@ export default function Skyshot() {
       height="calc(100vh - 130px)"
     >
       {/* Hour numbers */}
-      {!weatherHook?.weatherLoading && !weatherHook?.weatherParsing && (
+      {!weatherHook?.weatherLoading && !weatherParsing && (
         <Stack
           direction="column"
           spacing="5px"
@@ -50,7 +67,7 @@ export default function Skyshot() {
         width="100%"
         minH="500px"
       >
-        {weatherHook?.allParsedWeather[0]?.weather?.map(
+        {parsedWeather?.weather?.map(
           (dayArray: WeatherType[], dayIndex) => {
             // Parse first time data of day into locale day index
             let firstDataDayIndex = 0;
@@ -69,7 +86,7 @@ export default function Skyshot() {
                 endColor="gray.600"
                 fadeDuration={2}
                 isLoaded={
-                  !weatherHook?.weatherLoading && !weatherHook?.weatherParsing
+                  !weatherHook?.weatherLoading && !weatherParsing
                 }
                 height="100%"
                 borderRadius="10px"

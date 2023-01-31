@@ -95,7 +95,7 @@ export default function SettingsModal({ isOpen, onClose }) {
           </Box>
           <Stack direction="row">
             {/* StartHour */}
-            <Stack
+            {/* <Stack
               direction="column"
               spacing="-5px"
               display={["none", "none", "block"]}
@@ -119,10 +119,10 @@ export default function SettingsModal({ isOpen, onClose }) {
                   return <option key={num}>{num}:00</option>;
                 })}
               </Select>
-            </Stack>
+            </Stack> */}
 
             {/* EndHour */}
-            <Stack
+            {/* <Stack
               direction="column"
               spacing="-5px"
               display={["none", "none", "block"]}
@@ -151,7 +151,7 @@ export default function SettingsModal({ isOpen, onClose }) {
                     return <option key={num}>{num}:00</option>;
                   })}
               </Select>
-            </Stack>
+            </Stack> */}
           </Stack>
         </ModalBody>
 
