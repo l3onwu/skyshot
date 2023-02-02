@@ -5,7 +5,7 @@ import Skybox from "./Skybox";
 import { WeatherType } from "common/lib/types";
 import { useGlobalContext } from "../lib/context";
 import { utcToZonedTime, format } from "date-fns-tz";
-import sevenDaysTempPrecip from "common/lib/weatherParsers/sevenDayTempPrecip";
+import parseSevenDayTempPrecipView from "common/lib/weatherParsers/parseSevenDayTempPrecipView";
 
 export default function Skyshot() {
   // State
@@ -20,7 +20,7 @@ export default function Skyshot() {
   useEffect(() => {
     setWeatherParsing(true);
     if (weatherHook?.weatherData?.[0]) {
-      let tempParsedWeather = sevenDaysTempPrecip(weatherHook?.weatherData?.[0]);
+      let tempParsedWeather = parseSevenDayTempPrecipView(weatherHook?.weatherData?.[0]);
       setParsedWeather(tempParsedWeather);
       setWeatherParsing(false);
     }

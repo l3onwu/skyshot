@@ -1,9 +1,8 @@
 import { WeatherType } from "../types";
 
-const sevenDaysTempPrecip = (singleWeatherData) => {
+const parseSevenDayTempPrecipView = (singleWeatherData) => {
   // PARSE weather data (divide into 7 day arrays of time objects)
   let parsedWeatherArray = [[], [], [], [], [], [], []];
-  let currentWeatherObject = {};
   let dayIndex = 0;
   let hoursAddedToDayCounter = 0;
 
@@ -27,19 +26,6 @@ const sevenDaysTempPrecip = (singleWeatherData) => {
       hoursAddedToDayCounter = 0;
     }
 
-    // Store 'current' singleWeatherData for navbar
-    // Use the exact date object, takes into account diff timezone
-    let weatherHour = weatherObject?.time.getHours();
-    let weatherDate = weatherObject?.time.getDate();
-    if (
-      new Date().getHours() === weatherHour &&
-      new Date().getDate() === weatherDate
-    ) {
-      currentWeatherObject = {
-        ...weatherObject,
-      };
-    }
-
     // Filter out data not between startHour to endHour
     // let startTime = parseInt(startHour.split(":")[0]);
     // let endTime = parseInt(endHour.split(":")[0]);
@@ -51,7 +37,7 @@ const sevenDaysTempPrecip = (singleWeatherData) => {
     parsedDay.push(weatherObject);
     hoursAddedToDayCounter += 1;
   }
-  return { weather: parsedWeatherArray, current: currentWeatherObject };
+  return { weather: parsedWeatherArray };
 };
 
-export default sevenDaysTempPrecip;
+export default parseSevenDayTempPrecipView;

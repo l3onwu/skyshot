@@ -39,7 +39,7 @@ export default function Navbar() {
             </Heading>
 
             {/* Current */}
-            {/* <CurrentWeather /> */}
+            <CurrentWeather />
 
             {/* Timezone */}
             <Stack spacing="0px">
