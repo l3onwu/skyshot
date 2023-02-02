@@ -8,7 +8,7 @@ import {
   Stack,
   Flex,
 } from "@chakra-ui/react";
-import { BsCloudRain, BsFillSunFill } from "react-icons/bs";
+import { BsCloudRain, BsFillSunFill, BsSnow3 } from "react-icons/bs";
 import { checkNow, chooseBG } from "common/lib/helpers";
 import { WeatherType } from "common/lib/types";
 import { useGlobalContext } from "../lib/context";
@@ -22,7 +22,9 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
     <Popover placement="auto" trigger="hover">
       {/* Popover Trigger Box */}
       <PopoverTrigger>
-        <Box
+        <Flex
+          direction="row"
+          alignItems="center"
           width="100%"
           height="100%"
           p="1px"
@@ -36,10 +38,25 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
             cursor: "pointer",
           }}
         >
+          {/* Conditional snow icon */}
+          {interfaceHook?.mode === "Rain" && hourData["snowfall"] ? (
+            <Box position="relative" left="2px" fontSize="8px" color="gray.700">
+              <BsSnow3 />
+            </Box>
+          ) : (
+            ""
+          )}
+
+          {/* Numbers */}
           {interfaceHook?.numberMode && (
             <Text
+              width="100%"
               fontSize="10px"
-              color="gray.100"
+              color={
+                interfaceHook?.mode === "Rain" && hourData["snowfall"]
+                  ? "gray.800"
+                  : "gray.100"
+              }
               fontWeight="bold"
               align="center"
             >
@@ -48,7 +65,7 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
                 : `${(hourData["temperature"] * 1.5 + 32).toFixed(1)}°F`}
             </Text>
           )}
-        </Box>
+        </Flex>
       </PopoverTrigger>
 
       {/* Popover Content */}
@@ -63,14 +80,10 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
             {/* Temperature */}
             <Stack direction="row" mb="-3px">
               <Text
-                color={hourData?.precipitation > 0 ? "blue" : "orange"}
+                color={hourData?.rain > 0 ? "blue" : "orange"}
                 fontSize="20px"
               >
-                {hourData?.precipitation > 0 ? (
-                  <BsCloudRain />
-                ) : (
-                  <BsFillSunFill />
-                )}
+                {hourData?.rain > 0 ? <BsCloudRain /> : <BsFillSunFill />}
               </Text>
               <Text>
                 {interfaceHook?.tempUnit === "C"
@@ -81,8 +94,14 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
 
             {/* Rain */}
             <Text>
-              {hourData?.precipitation}
+              {hourData?.rain}
               <span style={{ fontSize: "11px" }}> mm</span> rainfall
+            </Text>
+
+            {/* Snow */}
+            <Text>
+              {hourData?.snowfall}
+              <span style={{ fontSize: "11px" }}> mm</span> snowfall
             </Text>
           </Flex>
         </PopoverBody>

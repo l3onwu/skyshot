@@ -12,9 +12,10 @@ const parseSevenDayTempPrecipView = (singleWeatherData) => {
     let parsedDay = parsedWeatherArray[dayIndex];
 
     // Create weather object from data, cast correct types
-    let weatherObject: WeatherType = {
+    let weatherObject = {
       time: new Date(singleWeatherData?.hourly?.time[i] * 1000),
-      precipitation: parseFloat(singleWeatherData?.hourly?.precipitation[i]),
+      rain: parseFloat(singleWeatherData?.hourly?.rain[i]) + parseFloat(singleWeatherData?.hourly?.showers[i]),
+      snowfall: parseFloat(singleWeatherData?.hourly?.snowfall[i]),
       temperature: parseFloat(singleWeatherData?.hourly?.temperature_2m[i]),
     };
 

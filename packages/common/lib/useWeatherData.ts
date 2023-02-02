@@ -20,7 +20,7 @@ export default function useWeatherData({
       const timezoneQuery = `&timezone=auto`;
       try {
         const response = await axios.get(
-          `https://api.open-meteo.com/v1/forecast?latitude=${geoObjectsArray[i]["lat"]}&longitude=${geoObjectsArray[i]["lng"]}&hourly=temperature_2m,relativehumidity_2m,precipitation,rain,snowfall,snow_depth,cloudcover,windspeed_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,rain_sum,snowfall_sum,shortwave_radiation_sum${timezoneQuery}&timeformat=unixtime`
+          `https://api.open-meteo.com/v1/forecast?latitude=${geoObjectsArray[i]["lat"]}&longitude=${geoObjectsArray[i]["lng"]}&hourly=temperature_2m,relativehumidity_2m,precipitation,rain,showers,snowfall,snow_depth,cloudcover,windspeed_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,rain_sum,snowfall_sum,shortwave_radiation_sum${timezoneQuery}&timeformat=unixtime`
         );
         weatherDataArray.push(response?.data);
         // console.log(response?.data)
