@@ -8,22 +8,38 @@ import { useEffect } from "react";
 import { useGlobalContext } from "../lib/context";
 import axios from "axios";
 import { GeoType } from "common/lib/types";
+import loadGoogleMapsApi from "load-google-maps-api";
 
 export default function PlacesAutocomplete() {
   // Helpers
   const { geoHook } = useGlobalContext();
 
   const {
+    init,
     ready,
     value,
     suggestions: { status, data },
     setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
+    initOnMount: false,
     defaultValue: geoHook?.geoObject?.address || "",
     requestOptions: {},
     debounce: 500,
   });
+
+  // Load google maps API and init() placesHook in callback
+  useEffect(() => {
+    loadGoogleMapsApi({
+      key: process.env.REACT_APP_GOOGLE_WEB_APIKEY,
+      libraries: ["places"],
+    })
+      .then(init)
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, []);
+
   const ref = useOnclickOutside(() => {
     clearSuggestions();
   });
