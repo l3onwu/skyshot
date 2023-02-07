@@ -23,7 +23,15 @@ export default function Navbar() {
 
   // TSX
   return (
-    <Box borderBottomWidth="1px" borderColor="gray.700" mb="20px" height="60px">
+    <Box
+      borderBottomWidth="1px"
+      borderColor="gray.700"
+      mb="20px"
+      height="60px"
+      width="100%"
+      position="fixed"
+      bgColor="#171819"
+    >
       <Container maxW="container.xl" height="100%">
         {/* Left side */}
         <Flex align="center" height="100%" justify="space-between">
