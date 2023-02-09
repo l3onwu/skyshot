@@ -1,12 +1,15 @@
 import { Flex, Box, Text } from "@chakra-ui/react";
+import DailyPrecip from "../components/DailyPrecip";
+import DailySun from "../components/DailySun";
+import DailyTemp from "../components/DailyTemp";
 import Skyshot from "../components/Skyshot";
 
 const Main = () => {
   return (
     <Flex wrap="wrap" direction="row" justify="space-between">
-      <Placeholder text="Current/Min/Max" />
-      <Placeholder text="Precip" />
-      <Placeholder text="Sunrise/Sunset" />
+      <DailyTemp/>
+      <DailyPrecip/>
+      <DailySun/>
       <Box
         width="32%"
         mb="50px"
