@@ -4,8 +4,9 @@ const Standard33 = (props) => {
   return (
     <Box
       width="32%"
-      height="200px"
-      bgColor="gray.800"
+      height="150px"
+      // bgColor="gray.800"
+      // border="1px solid gray"
       p="20px"
       borderRadius="10px"
       mb="30px"
@@ -15,4 +16,4 @@ const Standard33 = (props) => {
   );
 };
 
-export default Standard33
+export default Standard33;
