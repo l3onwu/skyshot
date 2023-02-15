@@ -3,20 +3,18 @@ import DailyPrecip from "../components/DailyPrecip";
 import DailySun from "../components/DailySun";
 import DailyTemp from "../components/DailyTemp";
 import Skyshot from "../components/Skyshot";
+import WeeklyOverview from "../components/WeeklyOverview";
 
 const Main = () => {
   return (
     <Flex wrap="wrap" direction="row" justify="space-between">
-      <DailyTemp/>
-      <DailyPrecip/>
-      <DailySun/>
-      <Box
-        width="32%"
-        mb="50px"
-        p="10px"
-        borderRadius="10px"
-        bgColor="gray.800"
-      ></Box>
+      {/* Row 1*/}
+      <DailyTemp />
+      <DailyPrecip />
+      <DailySun />
+
+      {/* Row 2 */}
+      <WeeklyOverview/>
       <Box width="66%" mb="50px">
         <Skyshot />
       </Box>
