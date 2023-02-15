@@ -52,7 +52,7 @@ const WeeklyOverview = () => {
 
   // TSX
   return (
-    <Box width="32%" mb="50px" p="20px" borderRadius="10px">
+    <Box width="32%" mb="50px" p="20px" borderRadius="10px" overflow="scroll">
       {!weatherHook?.weatherLoading && !weatherParsing && (
         <>
           {parsedWeather?.map((dayObj) => {
