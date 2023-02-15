@@ -31,6 +31,7 @@ export default function Navbar() {
       width="100%"
       position="fixed"
       bgColor="#171819"
+      zIndex={999}
     >
       <Container maxW="container.xl" height="100%">
         {/* Left side */}
