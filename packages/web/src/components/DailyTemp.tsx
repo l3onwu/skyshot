@@ -30,7 +30,17 @@ const DailyTemp = () => {
       {!weatherHook?.weatherLoading && !weatherParsing && (
         <Box overflow="scroll">
           <Box mb="20px">
-            <Text fontFamily="Oswald" fontSize="20px" >
+            <Text
+              textTransform="uppercase"
+              bgColor="pink.700"
+              width="fit-content"
+              px="12px"
+              py="3px"
+              borderRadius="20px"
+              mb="5px"
+              fontSize="14px"
+              fontFamily="Oswald"
+            >
               Today's Temp
             </Text>
           </Box>
@@ -40,7 +50,9 @@ const DailyTemp = () => {
               <Text color="gray.500" fontSize="12px" fontFamily="Oswald">
                 MIN
               </Text>
-              <Text fontSize={["14px", "20px", "32px", "48px"]}>{parsedWeather.min}°C</Text>
+              <Text fontSize={["12px", "14px", "24px", "36px"]}>
+                {parsedWeather.min}°C
+              </Text>
             </Box>
 
             {/* Max */}
@@ -49,8 +61,9 @@ const DailyTemp = () => {
                 MAX
               </Text>
 
-              <Text fontSize={["14px", "20px", "32px", "48px"]}>{parsedWeather.max}°C</Text>
-
+              <Text fontSize={["12px", "14px", "24px", "36px"]}>
+                {parsedWeather.max}°C
+              </Text>
             </Box>
           </Flex>
         </Box>

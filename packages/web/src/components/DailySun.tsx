@@ -24,7 +24,6 @@ const DailySun = () => {
 
   const zonedSunset = utcToZonedTime(
     new Date(parsedWeather.sunset * 1000),
-
     geoHook?.geoObject?.timezoneID
   );
   const sunsetLocaleTime = format(zonedSunset, "p");
@@ -43,7 +42,17 @@ const DailySun = () => {
       {!weatherHook?.weatherLoading && !weatherParsing && (
         <Box overflow="scroll">
           <Box mb="20px">
-            <Text fontFamily="Oswald" fontSize="20px">
+            <Text
+              textTransform="uppercase"
+              bgColor="pink.700"
+              width="fit-content"
+              px="12px"
+              py="3px"
+              borderRadius="20px"
+              mb="5px"
+              fontSize="14px"
+              fontFamily="Oswald"
+            >
               Today's Sunrise/Sunset
             </Text>
           </Box>
