@@ -23,7 +23,7 @@ export const allHours = [
 // Filter hours to times between start/end
 // Formats to correct format
 // Takes input of start/end hours, and 12/24 time setting
-export const parseStart = (startHour = "0:00", endHour = "24:00", timeUnit) => {
+export const parseStart = (startHour = "0:00", endHour = "23:00", timeUnit) => {
   let times = [];
   for (
     let i = parseInt(startHour.split(":")[0]);
