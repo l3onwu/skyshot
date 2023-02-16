@@ -13,7 +13,15 @@ import { checkNow, chooseBG } from "common/lib/helpers";
 import { WeatherType } from "common/lib/types";
 import { useGlobalContext } from "../lib/context";
 
-export default function Skybox({ hourData }: { hourData: WeatherType }) {
+export default function Skybox({
+  hourData,
+  mode,
+  numberMode,
+}: {
+  hourData: WeatherType;
+  mode: string;
+  numberMode: boolean;
+}) {
   // State
   const { interfaceHook } = useGlobalContext();
 
@@ -31,7 +39,7 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
           borderRadius="5px"
           borderWidth="1px"
           borderColor={checkNow(hourData["time"]) ? "yellow" : "transparent"}
-          bgColor={chooseBG(hourData, interfaceHook?.mode)}
+          bgColor={chooseBG(hourData, mode)}
           transition="background-color 200ms linear"
           _hover={{
             borderColor: "white",
@@ -39,7 +47,7 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
           }}
         >
           {/* Conditional snow icon */}
-          {interfaceHook?.mode === "Rain" && hourData["snowfall"] ? (
+          {mode === "Rain" && hourData["snowfall"] ? (
             <Box position="relative" left="2px" fontSize="8px" color="gray.700">
               <BsSnow3 />
             </Box>
@@ -48,12 +56,12 @@ export default function Skybox({ hourData }: { hourData: WeatherType }) {
           )}
 
           {/* Numbers */}
-          {interfaceHook?.numberMode && (
+          {numberMode && (
             <Text
               width="100%"
               fontSize="10px"
               color={
-                interfaceHook?.mode === "Rain" && hourData["snowfall"]
+                mode === "Rain" && hourData["snowfall"]
                   ? "gray.800"
                   : "gray.100"
               }

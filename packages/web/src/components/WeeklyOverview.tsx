@@ -55,7 +55,7 @@ const WeeklyOverview = () => {
     <Box width="32%" mb="50px" p="20px" borderRadius="10px" overflow="scroll">
       {!weatherHook?.weatherLoading && !weatherParsing && (
         <>
-          {parsedWeather?.map((dayObj) => {
+          {parsedWeather?.map((dayObj, dayIndex) => {
             // Functions
             // Min calculations to find start of temperature bar
             // Eg. weeklow = 3, daylow = 5, distance = 2, totaldistance = 22, 2/22 = 0.09, 0.09*100px = 18px
@@ -87,7 +87,7 @@ const WeeklyOverview = () => {
 
             // TSX
             return (
-              <Box mb="30px">
+              <Box mb="30px" key={"weekOv" + dayIndex}>
                 <Text
                   textTransform="uppercase"
                   bgColor="gray.700"

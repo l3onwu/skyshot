@@ -8,7 +8,6 @@ import {
   IconButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import { BsCloudRain, BsThermometerHalf, BsCalculator } from "react-icons/bs";
 import { AiOutlineSetting } from "react-icons/ai";
 import { BiCurrentLocation } from "react-icons/bi";
 import PlacesAutocomplete from "./PlacesAutocomplete";
@@ -86,56 +85,7 @@ export default function Navbar() {
               align="center"
               spacing="-10px"
               mr={["1px", "1px", "10px"]}
-            >
-              {/* Temperature */}
-              <IconButton
-                aria-label="Temperature"
-                icon={<BsThermometerHalf />}
-                size="md"
-                variant="link"
-                color={interfaceHook?.mode === "Temp" ? "white" : "gray.600"}
-                _hover={{
-                  color: "white",
-                }}
-                onClick={() => {
-                  interfaceHook?.setMode("Temp");
-                }}
-              />
-
-              {/* Rain */}
-              <IconButton
-                aria-label="Rainfall"
-                icon={<BsCloudRain />}
-                size="md"
-                variant="link"
-                color={interfaceHook?.mode === "Rain" ? "white" : "gray.600"}
-                _hover={{
-                  color: "white",
-                }}
-                onClick={() => {
-                  interfaceHook?.setMode("Rain");
-                }}
-              />
-
-              <Text color="gray.700" px="15px">
-                |
-              </Text>
-
-              {/* Numbers */}
-              <IconButton
-                aria-label="Numbers"
-                icon={<BsCalculator />}
-                size="md"
-                variant="link"
-                color={interfaceHook?.numberMode ? "facebook.400" : "gray.600"}
-                _hover={{
-                  color: "white",
-                }}
-                onClick={() => {
-                  interfaceHook?.setNumberMode(!interfaceHook?.numberMode);
-                }}
-              />
-            </Stack>
+            ></Stack>
             {/* Place */}
             <Stack
               direction="row"
