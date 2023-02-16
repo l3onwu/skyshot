@@ -18,8 +18,8 @@ export const GlobalContextProvider = (props) => {
 
   const weatherHook = useWeatherData({
     geoObjectsArray: geoHook?.locationList,
-    startHour: "0:00",
-    endHour: "23:00",
+    // startHour: "0:00",
+    // endHour: "23:00",
   });
 
   // TSX

@@ -7,11 +7,7 @@ export interface weatherHookType {
   weatherError: Error;
 }
 
-export default function useWeatherData({
-  geoObjectsArray,
-  startHour,
-  endHour,
-}) {
+export default function useWeatherData({ geoObjectsArray }) {
   // Retrieve weather data, manage with SWR
   const openMeteoFetcher = async () => {
     // Map over geoObjectsArray
