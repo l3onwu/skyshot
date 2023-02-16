@@ -2,12 +2,11 @@ import { useGlobalContext } from "../lib/context";
 import { useState, useEffect } from "react";
 import Standard33 from "./ViewTemplates/Standard33";
 import parseDailyTemp from "common/lib/weatherParsers/parseDailyTemp";
-
-import { Text, Box, Stack, Flex } from "@chakra-ui/react";
+import { Text, Box, Skeleton, Flex } from "@chakra-ui/react";
 
 const DailyTemp = () => {
   // State
-  const { weatherHook, interfaceHook, geoHook } = useGlobalContext();
+  const { weatherHook } = useGlobalContext();
 
   // Set a default state with data structure, to load skeletons
   const [parsedWeather, setParsedWeather] = useState({
@@ -27,7 +26,14 @@ const DailyTemp = () => {
 
   return (
     <Standard33>
-      {!weatherHook?.weatherLoading && !weatherParsing && (
+      <Skeleton
+        startColor="gray.900"
+        endColor="gray.600"
+        fadeDuration={2}
+        isLoaded={!weatherHook?.weatherLoading && !weatherParsing}
+        height="100%"
+        borderRadius="10px"
+      >
         <Box overflow="scroll">
           <Box mb="20px">
             <Text
@@ -67,7 +73,7 @@ const DailyTemp = () => {
             </Box>
           </Flex>
         </Box>
-      )}
+      </Skeleton>
     </Standard33>
   );
 };

@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import Standard33 from "./ViewTemplates/Standard33";
 import parseDailySun from "common/lib/weatherParsers/parseDailySun";
 import { utcToZonedTime, format } from "date-fns-tz";
-import { Text, Box, Stack, Flex } from "@chakra-ui/react";
+import { Text, Box, Skeleton, Flex } from "@chakra-ui/react";
 
 const DailySun = () => {
   // State
-  const { weatherHook, interfaceHook, geoHook } = useGlobalContext();
+  const { weatherHook, geoHook } = useGlobalContext();
 
   // Set a default state with data structure, to load skeletons
   const [parsedWeather, setParsedWeather] = useState({
@@ -39,7 +39,14 @@ const DailySun = () => {
 
   return (
     <Standard33>
-      {!weatherHook?.weatherLoading && !weatherParsing && (
+      <Skeleton
+        startColor="gray.900"
+        endColor="gray.600"
+        fadeDuration={2}
+        isLoaded={!weatherHook?.weatherLoading && !weatherParsing}
+        height="100%"
+        borderRadius="10px"
+      >
         <Box overflow="scroll">
           <Box mb="20px">
             <Text
@@ -79,7 +86,7 @@ const DailySun = () => {
             </Box>
           </Flex>
         </Box>
-      )}
+      </Skeleton>
     </Standard33>
   );
 };
