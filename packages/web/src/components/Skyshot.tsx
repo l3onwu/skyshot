@@ -1,12 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Stack,
-  Text,
-  SimpleGrid,
-  Skeleton,
-  Flex,
-  IconButton,
-} from "@chakra-ui/react";
+import { Stack, Text, Skeleton, Flex, IconButton, Box } from "@chakra-ui/react";
 import { dayToDay, parseStart } from "common/lib/helpers";
 import Skybox from "./Skybox";
 import { WeatherType } from "common/lib/types";
@@ -14,14 +7,13 @@ import { useGlobalContext } from "../lib/context";
 import { utcToZonedTime, format } from "date-fns-tz";
 import parseSevenDayTempPrecipView from "common/lib/weatherParsers/parseSevenDayTempPrecipView";
 import { BsCloudRain, BsThermometerHalf } from "react-icons/bs";
-import {ImListNumbered} from "react-icons/im"
+import { ImListNumbered } from "react-icons/im";
 
 export default function Skyshot() {
   // State
   const { weatherHook, interfaceHook, geoHook } = useGlobalContext();
   const [mode, setMode] = useState("Temp");
   const [numberMode, setNumberMode] = useState(true);
-
 
   // Set a default state with data structure, to load skeletons
   const [parsedWeather, setParsedWeather] = useState({
@@ -44,108 +36,66 @@ export default function Skyshot() {
   return (
     <>
       {/* Navbar */}
-      <Flex
-        direction="row"
-        justify="flex-end"
-        align="center"
-        width="100%"
-        borderBottomWidth="1px"
-        borderColor="gray.700"
-        pb="10px"
-        mb="20px"
-      >
-        <Stack direction="row" align="center" spacing="-10px">
-          {/* Temperature */}
-          <IconButton
-            aria-label="Temperature"
-            icon={<BsThermometerHalf />}
-            size="md"
-            variant="link"
-            color={mode === "Temp" ? "white" : "gray.600"}
-            _hover={{
-              color: "white",
-            }}
-            onClick={() => {
-              setMode("Temp");
-            }}
-          />
+      <SkyshotNavbar
+        mode={mode}
+        setMode={setMode}
+        numberMode={numberMode}
+        setNumberMode={setNumberMode}
+      />
 
-          {/* Rain */}
-          <IconButton
-            aria-label="Rainfall"
-            icon={<BsCloudRain />}
-            size="md"
-            variant="link"
-            color={mode === "Rain" ? "white" : "gray.600"}
-            _hover={{
-              color: "white",
-            }}
-            onClick={() => {
-              setMode("Rain");
-            }}
-          />
-
-          <Text color="gray.700" px="15px">
-            |
-          </Text>
-
-          {/* Numbers */}
-          <IconButton
-            aria-label="Numbers"
-            icon={<ImListNumbered />}
-            size="sm"
-            variant="link"
-            color={numberMode ? "facebook.400" : "gray.600"}
-            _hover={{
-              color: "white",
-            }}
-            onClick={() => {
-              setNumberMode(!numberMode);
-            }}
-          />
-        </Stack>
-      </Flex>
-
-      {/* Grid display */}
-      <Stack
-        direction="row"
-        spacing="5px"
-        overflow="scroll"
-        width="100%"
-        height="calc(100vh - 130px)"
-      >
-        {/* Hour numbers */}
-        {!weatherHook?.weatherLoading && !weatherParsing && (
-          <Stack
-            direction="column"
-            spacing="5px"
-            pt="34px"
-            mr="5px"
-            minH="500px"
-            width="fit-content"
-          >
-            {parseStart(
-              interfaceHook?.startHour,
-              interfaceHook?.endHour,
-              interfaceHook?.timeUnit
-            ).map((timeNumber, timeIndex) => {
-              return (
-                <Flex height="100%" key={timeIndex} align="center">
-                  <Text fontSize="8px">{`${timeNumber}`}</Text>
-                </Flex>
-              );
-            })}
-          </Stack>
-        )}
-
+      {/* Grid container */}
+      <Box overflow="scroll" width="100%" height="calc(100vh - 130px)">
         {/* Grid */}
-        <SimpleGrid
-          columns={7}
-          spacing="5px"
-          minW={["1200px", "1200px", "0px"]}
-          width="100%"
-          minH="500px"
-        >
+        <Flex minW={["1200px", "1200px", "0px"]} width="100%">
+          {/* Hour numbers */}
+          {!weatherHook?.weatherLoading && !weatherParsing && (
+            <Stack
+              direction="column"
+              spacing="5px"
+              mr="5px"
+              height="100%"
+              width="fit-content"
+              align="center"
+            >
+              <Text
+                color="transparent"
+                py="3px"
+                mb="5px"
+                fontSize="11px"
+                fontFamily="Oswald"
+              >
+                ..
+              </Text>
+              {parseStart(
+                interfaceHook?.startHour,
+                interfaceHook?.endHour,
+                interfaceHook?.timeUnit
+              ).map((timeNumber, timeIndex) => {
+                return (
+                  <Flex
+                    direction="row"
+                    alignItems="center"
+                    width="100%"
+                    height="100%"
+                    p="1px"
+                    borderWidth="1px"
+                    borderColor="transparent"
+                    key={timeIndex}
+                  >
+                    <Text
+                      width="100%"
+                      fontSize="10px"
+                      color="gray.600"
+                      align="center"
+                    >
+                      {`${timeNumber}`}
+                    </Text>
+                  </Flex>
+                );
+              })}
+            </Stack>
+          )}
+          {/* Day columns */}
           {parsedWeather?.weather?.map((dayArray: WeatherType[], dayIndex) => {
             // Parse first time data of day into locale day index
             let firstDataDayIndex = 0;
@@ -165,9 +115,11 @@ export default function Skyshot() {
                 fadeDuration={2}
                 isLoaded={!weatherHook?.weatherLoading && !weatherParsing}
                 height="100%"
+                minHeight="calc(100vh - 130px)"
                 borderRadius="10px"
+                width="20%"
+                mr="5px"
               >
-                {/* Day columns */}
                 <Stack
                   direction="column"
                   spacing="5px"
@@ -205,8 +157,74 @@ export default function Skyshot() {
               </Skeleton>
             );
           })}
-        </SimpleGrid>
-      </Stack>
+        </Flex>
+      </Box>
     </>
   );
 }
+
+const SkyshotNavbar = ({ mode, setMode, numberMode, setNumberMode }) => {
+  return (
+    <Flex
+      direction="row"
+      justify="flex-end"
+      align="center"
+      width="100%"
+      borderBottomWidth="1px"
+      borderColor="gray.700"
+      pb="10px"
+      mb="20px"
+    >
+      <Stack direction="row" align="center" spacing="-10px">
+        {/* Temperature */}
+        <IconButton
+          aria-label="Temperature"
+          icon={<BsThermometerHalf />}
+          size="md"
+          variant="link"
+          color={mode === "Temp" ? "white" : "gray.600"}
+          _hover={{
+            color: "white",
+          }}
+          onClick={() => {
+            setMode("Temp");
+          }}
+        />
+
+        {/* Rain */}
+        <IconButton
+          aria-label="Rainfall"
+          icon={<BsCloudRain />}
+          size="md"
+          variant="link"
+          color={mode === "Rain" ? "white" : "gray.600"}
+          _hover={{
+            color: "white",
+          }}
+          onClick={() => {
+            setMode("Rain");
+          }}
+        />
+
+        <Text color="gray.700" px="15px">
+          |
+        </Text>
+
+        {/* Numbers */}
+        <IconButton
+          aria-label="Numbers"
+          icon={<ImListNumbered />}
+          size="sm"
+          variant="link"
+          color={numberMode ? "facebook.400" : "gray.600"}
+          _hover={{
+            color: "white",
+          }}
+          onClick={() => {
+            setNumberMode(!numberMode);
+          }}
+        />
+      </Stack>
+    </Flex>
+  );
+};
