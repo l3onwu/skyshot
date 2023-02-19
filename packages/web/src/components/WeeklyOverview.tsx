@@ -10,6 +10,8 @@ import {
   BsSunset,
   BsSunrise,
 } from "react-icons/bs";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { GoArrowDown, GoArrowUp } from "react-icons/go";
 
 const WeeklyOverview = () => {
   // State
@@ -93,7 +95,8 @@ const WeeklyOverview = () => {
 
           // TSX
           return (
-            <Box mb="30px" key={"weekOv" + dayIndex}>
+            <Box mb="28px" key={"weekOv" + dayIndex}>
+              {/* Day title */}
               <Text
                 textTransform="uppercase"
                 bgColor="gray.700"
@@ -102,34 +105,39 @@ const WeeklyOverview = () => {
                 py="3px"
                 borderRadius="20px"
                 mb="5px"
-                fontSize="14px"
+                fontSize="13px"
                 fontFamily="Oswald"
               >
                 {niceDayFormat}
               </Text>
 
               {/* Row of data */}
-              <Flex direction="row" px="5px" py="5px">
+              <Flex direction="row" px="5px" py="5px" align="start">
                 {/* Icon condition, if raining, rain. If cloudy, cloud. If sunny, sun */}
                 <Stack direction="column" mr="20px">
-                  <Text fontSize="36px">
+                  <Text fontSize="30px">
                     {renderConditionsIcon(dayObj?.rain, dayObj?.snow)}
                   </Text>
-                  {dayObj?.rain && <Text fontSize="8px">{dayObj?.rain}mm</Text>}
-                  {dayObj?.snow && <Text fontSize="8px">{dayObj?.snow}mm</Text>}
+                  {dayObj?.snow ? (
+                    <Text fontSize="8px">{dayObj?.snow}mm</Text>
+                  ) : dayObj?.rain ? (
+                    <Text fontSize="8px">{dayObj?.rain}mm</Text>
+                  ) : (
+                    ""
+                  )}
                 </Stack>
 
                 {/* Sunrise/Sunset */}
                 <Stack direction="column" spacing="0px" mr="10px">
                   <Stack direction="row" mr="10px">
-                    <Text fontSize="18px">
-                      <BsSunrise />
+                    <Text fontSize="16px">
+                      <FiChevronUp />
                     </Text>
                     <Text fontSize="8px">{sunriseLocaleTime}</Text>
                   </Stack>
                   <Stack direction="row">
-                    <Text fontSize="18px">
-                      <BsSunset />
+                    <Text fontSize="16px">
+                      <FiChevronDown />
                     </Text>
                     <Text fontSize="8px">{sunsetLocaleTime}</Text>
                   </Stack>
