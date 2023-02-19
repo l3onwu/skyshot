@@ -7,7 +7,7 @@ const Standard33 = (props) => {
       height="150px"
       // bgColor="gray.800"
       // border="1px solid gray"
-      p="20px"
+      // p="20px"
       borderRadius="10px"
       mb="30px"
     >
