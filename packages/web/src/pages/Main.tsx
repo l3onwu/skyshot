@@ -7,7 +7,7 @@ import WeeklyOverview from "../components/WeeklyOverview";
 
 const Main = () => {
   return (
-    <Flex wrap="wrap" direction="row" justify="space-between">
+    <Flex wrap="wrap" direction="row" justify="space-between" pt="20px">
       {/* Row 1*/}
       <DailyTemp />
       <DailyPrecip />
