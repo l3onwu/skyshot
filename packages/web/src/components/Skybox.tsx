@@ -56,23 +56,23 @@ export default function Skybox({
           )}
 
           {/* Numbers */}
-          {numberMode && (
-            <Text
-              width="100%"
-              fontSize="10px"
-              color={
-                mode === "Rain" && hourData["snowfall"]
-                  ? "gray.800"
-                  : "gray.100"
-              }
-              fontWeight="bold"
-              align="center"
-            >
-              {interfaceHook?.tempUnit === "C"
-                ? `${hourData["temperature"]}°C`
-                : `${(hourData["temperature"] * 1.5 + 32).toFixed(1)}°F`}
-            </Text>
-          )}
+          <Text
+            width="100%"
+            fontSize="10px"
+            color={
+              !numberMode
+                ? "transparent"
+                : mode === "Rain" && hourData["snowfall"]
+                ? "gray.800"
+                : "gray.100"
+            }
+            fontWeight="bold"
+            align="center"
+          >
+            {interfaceHook?.tempUnit === "C"
+              ? `${hourData["temperature"]}°C`
+              : `${(hourData["temperature"] * 1.5 + 32).toFixed(1)}°F`}
+          </Text>
         </Flex>
       </PopoverTrigger>
 
