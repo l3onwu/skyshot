@@ -1,6 +1,5 @@
 import { useContext, createContext } from "react";
 import useInterfaceSettings from "./useInterfaceSettings";
-// import useWeatherData from "./useWeatherData";
 import useWeatherData from "common/lib/useWeatherData";
 import useGeoData from "./useGeoData";
 
@@ -12,9 +11,6 @@ export const GlobalContextProvider = ({ children }) => {
   const geoHook = useGeoData();
   const weatherHook = useWeatherData({
     geoObjectsArray: [geoHook?.geoObject],
-    // timezone: geoHook?.timezone,
-    startHour: interfaceHook?.startHour,
-    endHour: interfaceHook?.endHour,
   });
 
   return (

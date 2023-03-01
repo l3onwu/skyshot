@@ -1,7 +1,7 @@
 import { Box, Container, Heading } from "@chakra-ui/react";
 import { useGlobalContext } from "./lib/context";
 import Navbar from "./components/Navbar";
-import Skyshot from "./components/Skyshot";
+import Main from "./pages/Main";
 
 // Main view
 function App() {
@@ -10,12 +10,12 @@ function App() {
 
   // TSX
   return (
-    <Box height="100vh" width="100vw" bgColor="#171819">
+    <Box minH="100vh" width="100vw" bgColor="#171819">
       {/* Navbar */}
       <Navbar />
 
       {/* Page contents */}
-      <Container maxW="container.xl" minH="calc(100vh - 100px)">
+      <Container maxW="container.xl" minH="calc(100vh - 100px)" pt="80px">
         {/* Fetching error, location set */}
         {weatherHook?.weatherError &&
           Object.keys(geoHook?.geoObject).length > 0 && (
@@ -33,7 +33,7 @@ function App() {
 
         {/* Loading and success. Weather view */}
         {!weatherHook?.weatherError &&
-          Object.keys(geoHook?.geoObject).length > 0 && <Skyshot />}
+          Object.keys(geoHook?.geoObject).length > 0 && <Main />}
       </Container>
     </Box>
   );

@@ -1,6 +1,7 @@
 export interface WeatherType {
   time: Date;
-  precipitation: number;
+  rain: number;
+  snowfall: number;
   temperature: number;
 }
 

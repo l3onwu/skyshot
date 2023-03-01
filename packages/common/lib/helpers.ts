@@ -23,7 +23,7 @@ export const allHours = [
 // Filter hours to times between start/end
 // Formats to correct format
 // Takes input of start/end hours, and 12/24 time setting
-export const parseStart = (startHour, endHour, timeUnit) => {
+export const parseStart = (startHour = "0:00", endHour = "23:00", timeUnit) => {
   let times = [];
   for (
     let i = parseInt(startHour.split(":")[0]);
@@ -50,11 +50,17 @@ export const parseStart = (startHour, endHour, timeUnit) => {
 // Return color based on view mode, and temperature data
 // Takes input, view mode and hour weather data
 export const chooseBG = (datapoint, mode) => {
-  // Rain mode
+  // Rain + Snow mode
   if (mode === "Rain") {
-    if (datapoint["precipitation"] < 0.01) {
+    if (datapoint["snowfall"] >= 2) {
+      return "#ffffff";
+    } else if (datapoint["snowfall"] >= 1) {
+      return "#e2e2e2";
+    } else if (datapoint["snowfall"] > 0) {
+      return "#b6b4b4";
+    } else if (datapoint["rain"] < 0.01) {
       return "gray.800";
-    } else if (datapoint["precipitation"] < 0.5) {
+    } else if (datapoint["rain"] < 0.5) {
       return "blue.800";
     } else {
       return "blue.500";
