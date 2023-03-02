@@ -7,6 +7,7 @@ import {
   Text,
   IconButton,
   useDisclosure,
+  Button,
 } from "@chakra-ui/react";
 import { AiOutlineSetting } from "react-icons/ai";
 import { BiCurrentLocation } from "react-icons/bi";
@@ -14,6 +15,7 @@ import PlacesAutocomplete from "./PlacesAutocomplete";
 import CurrentWeather from "./CurrentWeather";
 import SettingsModal from "./SettingsModal";
 import { useGlobalContext } from "../lib/context";
+import { SkyshotNavbar } from "./Skyshot";
 
 export default function Navbar() {
   // Helpers
@@ -41,16 +43,42 @@ export default function Navbar() {
               color="white"
               fontFamily="Oswald"
               fontSize={["18px", "30px"]}
-              pr="20px"
+              pr="10px"
             >
               SKYSHOT
             </Heading>
+
+            {/* Modes */}
+            <Button
+              size="xs"
+              colorScheme={
+                interfaceHook?.mode === "Calendar" ? "gray" : "white"
+              }
+              onClick={() => {
+                interfaceHook?.setMode("Calendar");
+                window.scrollTo(0, 0);
+              }}
+            >
+              Calendar
+            </Button>
+            <Button
+              size="xs"
+              colorScheme={
+                interfaceHook?.mode === "Calendar" ? "white" : "gray"
+              }
+              onClick={() => {
+                interfaceHook?.setMode("Detail");
+                window.scrollTo(0, 0);
+              }}
+            >
+              Detail
+            </Button>
 
             {/* Current */}
             <CurrentWeather />
 
             {/* Timezone */}
-            <Stack spacing="0px">
+            <Stack spacing="0px" display={["none", "none", "none", "flex"]}>
               <Text fontSize="11px" color="gray.300">
                 Your time: {new Date().toLocaleTimeString()}
               </Text>
@@ -58,12 +86,26 @@ export default function Navbar() {
                 Timezone: {timezones[geoHook?.timezone]?.display}
               </Text> */}
             </Stack>
+          </Stack>
+
+          {/* Right side */}
+          <Flex direction="row" align="center">
+            {/* Calendar navbar */}
+            {interfaceHook?.mode === "Calendar" && (
+              <SkyshotNavbar
+                mode={interfaceHook?.calendarMode}
+                setMode={interfaceHook?.setCalendarMode}
+                numberMode={interfaceHook?.numberMode}
+                setNumberMode={interfaceHook?.setNumberMode}
+              />
+            )}
 
             {/* Settings */}
             <IconButton
               icon={<AiOutlineSetting />}
               aria-label="Settings"
               size="md"
+              mr="10px"
               bgColor="transparent"
               color="gray.500"
               variant="ghost"
@@ -76,16 +118,7 @@ export default function Navbar() {
               onClick={onOpen}
             />
             <SettingsModal isOpen={isOpen} onClose={onClose} />
-          </Stack>
 
-          {/* Right side */}
-          <Flex direction="row" align="center">
-            <Stack
-              direction="row"
-              align="center"
-              spacing="-10px"
-              mr={["1px", "1px", "10px"]}
-            ></Stack>
             {/* Place */}
             <Stack
               direction="row"

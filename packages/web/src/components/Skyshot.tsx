@@ -12,8 +12,6 @@ import { ImListNumbered } from "react-icons/im";
 export default function Skyshot() {
   // State
   const { weatherHook, interfaceHook, geoHook } = useGlobalContext();
-  const [mode, setMode] = useState("Temp");
-  const [numberMode, setNumberMode] = useState(true);
 
   // Set a default state with data structure, to load skeletons
   const [parsedWeather, setParsedWeather] = useState({
@@ -36,17 +34,34 @@ export default function Skyshot() {
   return (
     <>
       {/* Navbar */}
-      <SkyshotNavbar
-        mode={mode}
-        setMode={setMode}
-        numberMode={numberMode}
-        setNumberMode={setNumberMode}
-      />
+      {interfaceHook?.mode === "Detail" && (
+        <Flex
+          direction="row"
+          justify="flex-end"
+          align="center"
+          width="100%"
+          borderBottomWidth="1px"
+          borderColor="gray.700"
+          pb="5px"
+          mb="15px"
+        >
+          <SkyshotNavbar
+            mode={interfaceHook?.calendarMode}
+            setMode={interfaceHook?.setCalendarMode}
+            numberMode={interfaceHook?.numberMode}
+            setNumberMode={interfaceHook?.setNumberMode}
+          />
+        </Flex>
+      )}
 
       {/* Grid container */}
-      <Box overflow="scroll" width="100%" height="calc(100vh - 130px)">
+      <Box overflow="scroll" width="100%">
         {/* Grid */}
-        <Flex minW={["1200px", "1200px", "0px"]} width="100%">
+        <Flex
+          minW={["1200px", "1200px", "0px"]}
+          width="100%"
+          height="calc(100vh - 100px)"
+        >
           {/* Hour numbers */}
           {!weatherHook?.weatherLoading && !weatherParsing && (
             <Stack
@@ -84,7 +99,7 @@ export default function Skyshot() {
                   >
                     <Text
                       width="100%"
-                      fontSize="10px"
+                      fontSize="9px"
                       color="gray.600"
                       align="center"
                     >
@@ -148,8 +163,8 @@ export default function Skyshot() {
                         <Skybox
                           key={`${dayIndex}, ${hourIndex}`}
                           hourData={hourData}
-                          mode={mode}
-                          numberMode={numberMode}
+                          mode={interfaceHook?.calendarMode}
+                          numberMode={interfaceHook?.numberMode}
                         />
                       );
                     })}
@@ -163,68 +178,57 @@ export default function Skyshot() {
   );
 }
 
-const SkyshotNavbar = ({ mode, setMode, numberMode, setNumberMode }) => {
+export const SkyshotNavbar = ({ mode, setMode, numberMode, setNumberMode }) => {
   return (
-    <Flex
-      direction="row"
-      justify="flex-end"
-      align="center"
-      width="100%"
-      borderBottomWidth="1px"
-      borderColor="gray.700"
-      pb="10px"
-      mb="20px"
-    >
-      <Stack direction="row" align="center" spacing="-10px">
-        {/* Temperature */}
-        <IconButton
-          aria-label="Temperature"
-          icon={<BsThermometerHalf />}
-          size="md"
-          variant="link"
-          color={mode === "Temp" ? "white" : "gray.600"}
-          _hover={{
-            color: "white",
-          }}
-          onClick={() => {
-            setMode("Temp");
-          }}
-        />
+    <Stack direction="row" align="center" spacing="-10px">
+      {/* Temperature */}
+      <IconButton
+        aria-label="Temperature"
+        icon={<BsThermometerHalf />}
+        size="md"
+        variant="link"
+        color={mode === "Temp" ? "white" : "gray.600"}
+        _hover={{
+          color: "white",
+        }}
+        onClick={() => {
+          setMode("Temp");
+        }}
+      />
 
-        {/* Rain */}
-        <IconButton
-          aria-label="Rainfall"
-          icon={<BsCloudRain />}
-          size="md"
-          variant="link"
-          color={mode === "Rain" ? "white" : "gray.600"}
-          _hover={{
-            color: "white",
-          }}
-          onClick={() => {
-            setMode("Rain");
-          }}
-        />
+      {/* Rain */}
+      <IconButton
+        aria-label="Rainfall"
+        icon={<BsCloudRain />}
+        size="md"
+        variant="link"
+        color={mode === "Rain" ? "white" : "gray.600"}
+        _hover={{
+          color: "white",
+        }}
+        onClick={() => {
+          setMode("Rain");
+        }}
+      />
 
-        <Text color="gray.700" px="15px">
-          |
-        </Text>
+      <Text color="gray.700" px="15px">
+        |
+      </Text>
 
-        {/* Numbers */}
-        <IconButton
-          aria-label="Numbers"
-          icon={<ImListNumbered />}
-          size="sm"
-          variant="link"
-          color={numberMode ? "facebook.400" : "gray.600"}
-          _hover={{
-            color: "white",
-          }}
-          onClick={() => {
-            setNumberMode(!numberMode);
-          }}
-        />
-      </Stack>
-    </Flex>
+      {/* Numbers */}
+      <IconButton
+        aria-label="Numbers"
+        icon={<ImListNumbered />}
+        size="sm"
+        variant="link"
+        color={numberMode ? "facebook.400" : "gray.600"}
+        _hover={{
+          color: "white",
+        }}
+        onClick={() => {
+          setNumberMode(!numberMode);
+        }}
+      />
+    </Stack>
   );
 };

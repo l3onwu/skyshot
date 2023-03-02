@@ -15,7 +15,7 @@ function App() {
       <Navbar />
 
       {/* Page contents */}
-      <Container maxW="container.xl" minH="calc(100vh - 100px)" pt="80px">
+      <Container maxW="container.xl" minH="calc(100vh - 100px)" pt="75px">
         {/* Fetching error, location set */}
         {weatherHook?.weatherError &&
           Object.keys(geoHook?.geoObject).length > 0 && (

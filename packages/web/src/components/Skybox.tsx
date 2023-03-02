@@ -58,7 +58,7 @@ export default function Skybox({
           {/* Numbers */}
           <Text
             width="100%"
-            fontSize="10px"
+            fontSize="9px"
             color={
               !numberMode
                 ? "transparent"

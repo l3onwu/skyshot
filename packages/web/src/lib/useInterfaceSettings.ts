@@ -1,6 +1,10 @@
 import { useState } from "react";
 
 export default function useInterfaceSettings() {
+  const [mode, setMode] = useState("Calendar");
+  const [calendarMode, setCalendarMode] = useState("Temp");
+  const [numberMode, setNumberMode] = useState(true);
+
   const [tempUnit, setTempUnit] = useState(
     localStorage.getItem("tempUnit") || "C"
   );
@@ -9,6 +13,12 @@ export default function useInterfaceSettings() {
   );
 
   return {
+    mode,
+    setMode,
+    calendarMode,
+    setCalendarMode,
+    numberMode,
+    setNumberMode,
     tempUnit,
     setTempUnit,
     timeUnit,

@@ -30,7 +30,14 @@ export default function CurrentWeather() {
 
   // TSX
   return (
-    <Stack spacing="-3px" direction="row" align="center" justify="center">
+    <Stack
+      pl="5px"
+      spacing="-3px"
+      direction="row"
+      align="center"
+      justify="center"
+      display={["none", "none", "none", "flex"]}
+    >
       <Text
         style={{ transform: "rotate(300deg)" }}
         fontFamily="Oswald"
