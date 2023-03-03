@@ -13,15 +13,18 @@ import {
   Stack,
   Select,
   Link,
+  IconButton,
+  Flex,
 } from "@chakra-ui/react";
 import { AiFillGithub } from "react-icons/ai";
 import { allHours } from "common/lib/helpers";
 import { useGlobalContext } from "../lib/context";
 import PlacesAutocomplete from "./PlacesAutocomplete";
+import { BiCurrentLocation } from "react-icons/bi";
 
 export default function SettingsModal({ isOpen, onClose }) {
   // State
-  const { interfaceHook } = useGlobalContext();
+  const { interfaceHook, geoHook } = useGlobalContext();
 
   // TSX
   return (
@@ -56,7 +59,24 @@ export default function SettingsModal({ isOpen, onClose }) {
             <Text fontSize="14px" mb="7px">
               Location:
             </Text>
-            <PlacesAutocomplete />
+            <Flex direction="row">
+              <Box width="100%">
+                <PlacesAutocomplete />
+              </Box>
+              <IconButton
+                aria-label="Get location"
+                icon={<BiCurrentLocation />}
+                size="md"
+                variant="link"
+                color="gray.600"
+                _hover={{
+                  color: "white",
+                }}
+                onClick={() => {
+                  geoHook.getBrowserLocation();
+                }}
+              />
+            </Flex>
           </Box>
 
           {/* C/F */}
