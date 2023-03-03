@@ -49,7 +49,11 @@ export default function Navbar() {
             </Heading>
 
             {/* Modes */}
-            <Box display={["none", "none", "none", "flex"]}>
+            <Stack
+              display={["none", "none", "none", "flex"]}
+              direction="row"
+              spacing="15px"
+            >
               <Button
                 size="xs"
                 colorScheme={
@@ -74,7 +78,7 @@ export default function Navbar() {
               >
                 Detail
               </Button>
-            </Box>
+            </Stack>
 
             {/* Current */}
             <CurrentWeather />
