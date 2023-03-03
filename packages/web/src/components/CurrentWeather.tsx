@@ -36,7 +36,6 @@ export default function CurrentWeather() {
       direction="row"
       align="center"
       justify="center"
-      display={["none", "none", "none", "flex"]}
     >
       <Text
         style={{ transform: "rotate(300deg)" }}

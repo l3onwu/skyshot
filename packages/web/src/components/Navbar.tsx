@@ -35,44 +35,46 @@ export default function Navbar() {
       zIndex={999}
     >
       <Container maxW="container.xl" height="100%">
-        {/* Left side */}
         <Flex align="center" height="100%" justify="space-between">
-          <Stack direction="row" align="center" spacing="15px">
+          {/* Left side */}
+          <Stack direction="row" align="center" spacing={["5px", "15px"]}>
             {/* Hero */}
             <Heading
               color="white"
               fontFamily="Oswald"
               fontSize={["18px", "30px"]}
-              pr="10px"
+              pr={["0px", "10px"]}
             >
               SKYSHOT
             </Heading>
 
             {/* Modes */}
-            <Button
-              size="xs"
-              colorScheme={
-                interfaceHook?.mode === "Calendar" ? "gray" : "white"
-              }
-              onClick={() => {
-                interfaceHook?.setMode("Calendar");
-                window.scrollTo(0, 0);
-              }}
-            >
-              Calendar
-            </Button>
-            <Button
-              size="xs"
-              colorScheme={
-                interfaceHook?.mode === "Calendar" ? "white" : "gray"
-              }
-              onClick={() => {
-                interfaceHook?.setMode("Detail");
-                window.scrollTo(0, 0);
-              }}
-            >
-              Detail
-            </Button>
+            <Box display={["none", "none", "none", "flex"]}>
+              <Button
+                size="xs"
+                colorScheme={
+                  interfaceHook?.mode === "Calendar" ? "gray" : "white"
+                }
+                onClick={() => {
+                  interfaceHook?.setMode("Calendar");
+                  window.scrollTo(0, 0);
+                }}
+              >
+                Calendar
+              </Button>
+              <Button
+                size="xs"
+                colorScheme={
+                  interfaceHook?.mode === "Calendar" ? "white" : "gray"
+                }
+                onClick={() => {
+                  interfaceHook?.setMode("Detail");
+                  window.scrollTo(0, 0);
+                }}
+              >
+                Detail
+              </Button>
+            </Box>
 
             {/* Current */}
             <CurrentWeather />
