@@ -125,7 +125,7 @@ export default function PlacesAutocomplete() {
         color="gray.500"
         fontSize={["11px", "11px", "13px"]}
         pl="10px"
-        width={["100%", "100px", "220px"]}
+        width={["100%", "100%", "220px"]}
         borderWidth="1px"
         borderColor="gray.700"
         px="8px"

@@ -55,7 +55,7 @@ export default function SettingsModal({ isOpen, onClose }) {
             </Link>
           </Stack>
           {/* Location select, display on small devices */}
-          <Box position="static" display={["block", "none"]} mb="20px">
+          <Box position="static" display={["block", "block", "none"]} mb="20px">
             <Text fontSize="14px" mb="7px">
               Location:
             </Text>
