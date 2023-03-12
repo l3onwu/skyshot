@@ -52,7 +52,6 @@ export default function CurrentWeather() {
         height="30px"
         startColor="gray.900"
         endColor="gray.600"
-        fadeDuration={2}
         isLoaded={!weatherHook?.weatherLoading && !parsing}
         borderRadius="10px"
       >

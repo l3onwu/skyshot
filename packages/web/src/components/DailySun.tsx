@@ -42,7 +42,6 @@ const DailySun = () => {
       <Skeleton
         startColor="gray.900"
         endColor="gray.600"
-        fadeDuration={2}
         isLoaded={!weatherHook?.weatherLoading && !weatherParsing}
         height="100%"
         borderRadius="10px"

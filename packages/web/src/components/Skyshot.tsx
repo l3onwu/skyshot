@@ -127,7 +127,6 @@ export default function Skyshot() {
                 key={`day${dayIndex}`}
                 startColor="gray.900"
                 endColor="gray.600"
-                fadeDuration={2}
                 isLoaded={!weatherHook?.weatherLoading && !weatherParsing}
                 height="100%"
                 minHeight="calc(100vh - 130px)"
