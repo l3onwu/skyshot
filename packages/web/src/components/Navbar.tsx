@@ -101,8 +101,6 @@ export default function Navbar() {
               <SkyshotNavbar
                 mode={interfaceHook?.calendarMode}
                 setMode={interfaceHook?.setCalendarMode}
-                numberMode={interfaceHook?.numberMode}
-                setNumberMode={interfaceHook?.setNumberMode}
               />
             )}
 

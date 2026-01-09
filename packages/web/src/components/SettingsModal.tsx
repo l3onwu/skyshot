@@ -113,6 +113,21 @@ export default function SettingsModal({ isOpen, onClose }) {
               }}
             />
           </Box>
+          {/* Show number values on calendar */}
+          <Box mb="20px">
+            <Text fontSize="14px">Show temperature on calendar</Text>
+            <Switch
+              colorScheme="blue"
+              isChecked={interfaceHook?.numberMode ? true : false}
+              onChange={() => {
+                localStorage.setItem(
+                  "numberMode",
+                  (!interfaceHook?.numberMode).toString()
+                );
+                interfaceHook?.setNumberMode(!interfaceHook?.numberMode);
+              }}
+            />
+          </Box>
           <Stack direction="row">
             {/* StartHour */}
             {/* <Stack

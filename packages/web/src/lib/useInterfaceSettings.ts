@@ -3,8 +3,10 @@ import { useState } from "react";
 export default function useInterfaceSettings() {
   const [mode, setMode] = useState("Calendar");
   const [calendarMode, setCalendarMode] = useState("Temp");
-  const [numberMode, setNumberMode] = useState(true);
-
+  const [numberMode, setNumberMode] = useState(
+    // if not in localStorage, default to true
+    localStorage.getItem("numberMode") === "false" ? false : true
+  );
   const [tempUnit, setTempUnit] = useState(
     localStorage.getItem("tempUnit") || "C"
   );

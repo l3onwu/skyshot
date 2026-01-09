@@ -7,7 +7,6 @@ import { useGlobalContext } from "../lib/context";
 import { utcToZonedTime, format } from "date-fns-tz";
 import parseSevenDayTempPrecipView from "common/lib/weatherParsers/parseSevenDayTempPrecipView";
 import { BsCloudRain, BsThermometerHalf } from "react-icons/bs";
-import { ImListNumbered } from "react-icons/im";
 
 export default function Skyshot() {
   // State
@@ -48,8 +47,6 @@ export default function Skyshot() {
           <SkyshotNavbar
             mode={interfaceHook?.calendarMode}
             setMode={interfaceHook?.setCalendarMode}
-            numberMode={interfaceHook?.numberMode}
-            setNumberMode={interfaceHook?.setNumberMode}
           />
         </Flex>
       )}
@@ -177,7 +174,7 @@ export default function Skyshot() {
   );
 }
 
-export const SkyshotNavbar = ({ mode, setMode, numberMode, setNumberMode }) => {
+export const SkyshotNavbar = ({ mode, setMode }) => {
   return (
     <Stack direction="row" align="center" spacing="-10px">
       {/* Temperature */}
@@ -213,21 +210,6 @@ export const SkyshotNavbar = ({ mode, setMode, numberMode, setNumberMode }) => {
       <Text color="gray.700" px="15px">
         |
       </Text>
-
-      {/* Numbers */}
-      <IconButton
-        aria-label="Numbers"
-        icon={<ImListNumbered />}
-        size="sm"
-        variant="link"
-        color={numberMode ? "facebook.400" : "gray.600"}
-        _hover={{
-          color: "white",
-        }}
-        onClick={() => {
-          setNumberMode(!numberMode);
-        }}
-      />
     </Stack>
   );
 };
