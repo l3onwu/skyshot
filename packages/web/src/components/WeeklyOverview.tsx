@@ -3,15 +3,8 @@ import { useGlobalContext } from "../lib/context";
 import { useState, useEffect } from "react";
 import parseWeekOverview from "common/lib/weatherParsers/parseWeekOverview";
 import { utcToZonedTime, format } from "date-fns-tz";
-import {
-  BsCloudRain,
-  BsFillSunFill,
-  BsSnow3,
-  BsSunset,
-  BsSunrise,
-} from "react-icons/bs";
+import { BsCloudRain, BsFillSunFill, BsSnow3 } from "react-icons/bs";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { GoArrowDown, GoArrowUp } from "react-icons/go";
 
 const WeeklyOverview = () => {
   // State

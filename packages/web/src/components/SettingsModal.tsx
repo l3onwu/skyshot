@@ -11,13 +11,11 @@ import {
   Switch,
   Box,
   Stack,
-  Select,
   Link,
   IconButton,
   Flex,
 } from "@chakra-ui/react";
 import { AiFillGithub } from "react-icons/ai";
-import { allHours } from "common/lib/helpers";
 import { useGlobalContext } from "../lib/context";
 import PlacesAutocomplete from "./PlacesAutocomplete";
 import { BiCurrentLocation } from "react-icons/bi";
@@ -128,66 +126,7 @@ export default function SettingsModal({ isOpen, onClose }) {
               }}
             />
           </Box>
-          <Stack direction="row">
-            {/* StartHour */}
-            {/* <Stack
-              direction="column"
-              spacing="-5px"
-              display={["none", "none", "block"]}
-            >
-              <Text fontSize="9px" color="gray">
-                FROM
-              </Text>
-              <Select
-                width="70px"
-                value={interfaceHook?.startHour}
-                size="sm"
-                color="white"
-                variant="unstyled"
-                onChange={(e) => {
-                  e.preventDefault();
-                  localStorage.setItem("startHour", e.target.value);
-                  interfaceHook?.setStartHour(e.target.value);
-                }}
-              >
-                {allHours.map((num) => {
-                  return <option key={num}>{num}:00</option>;
-                })}
-              </Select>
-            </Stack> */}
-
-            {/* EndHour */}
-            {/* <Stack
-              direction="column"
-              spacing="-5px"
-              display={["none", "none", "block"]}
-            >
-              <Text fontSize="9px" color="gray">
-                TO
-              </Text>
-              <Select
-                value={interfaceHook?.endHour}
-                size="sm"
-                color="white"
-                variant="unstyled"
-                onChange={(e) => {
-                  e.preventDefault();
-                  localStorage.setItem("endHour", e.target.value);
-                  interfaceHook?.setEndHour(e.target.value);
-                }}
-              >
-                {allHours
-                  .filter((hr) => {
-                    return (
-                      hr > parseInt(interfaceHook?.startHour.split(":")[0])
-                    );
-                  })
-                  .map((num) => {
-                    return <option key={num}>{num}:00</option>;
-                  })}
-              </Select>
-            </Stack> */}
-          </Stack>
+          <Stack direction="row"></Stack>
         </ModalBody>
 
         <ModalFooter pb="25px">

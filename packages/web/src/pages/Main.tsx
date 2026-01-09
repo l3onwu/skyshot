@@ -1,4 +1,4 @@
-import { Flex, Box, Text } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import DailyPrecip from "../components/DailyPrecip";
 import DailySun from "../components/DailySun";
 import DailyTemp from "../components/DailyTemp";
