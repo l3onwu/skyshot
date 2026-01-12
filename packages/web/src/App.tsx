@@ -10,12 +10,12 @@ function App() {
 
   // TSX
   return (
-    <Box minH="100vh" width="100vw" bgColor="#171819">
+    <Box minH={["100vh", "100dvh"]} width="100vw" bgColor="#171819">
       {/* Navbar */}
       <Navbar />
 
       {/* Page contents */}
-      <Container maxW="container.xl" minH="calc(100vh - 100px)" pt="75px">
+      <Container maxW="container.xl" minH="calc(100% - 100px)" pt="75px">
         {/* Fetching error, location set */}
         {weatherHook?.weatherError &&
           Object.keys(geoHook?.geoObject).length > 0 && (
